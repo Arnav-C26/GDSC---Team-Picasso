@@ -102,3 +102,28 @@ html {
   font-weight: 600;
   text-transform: capitalize;
 }
+
+
+.small-logo-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  position: fixed;
+  top: 17px;
+  left: 17px;
+  padding-right: 20px;
+}
+
+.small-logo {
+  height: 33px; 
+}
+
+.small-title {
+  color: #d9d9d9;
+  font-size: 22px; /* Consider using 'vw' units for responsiveness */
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+

@@ -1,108 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-  <style>
-    body,
-    html {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: #111111;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .background-blur {
-      position: absolute;
-      background: rgba(181, 23, 158, 0.8);
-      border-radius: 50%;
-      filter: blur(504px);
-      transition: all 0.3s ease;
-    }
-    .background-blur.first {
-      width: 35%;
-      min-width: 300px;
-      height: 35%;
-      min-height: 300px;
-      left: 5%;
-      top: 5%;
-    }
-    .background-blur.second {
-      width: 35%;
-      min-width: 300px;
-      height: 35%;
-      min-height: 300px;
-      right: 5%;
-      bottom: 5%;
-    }
-    .content {
-      position: absolute;
-      max-width: 600px;
-      width: 80%;
-      padding: 20px;
-      box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      z-index: 10;
-    }
-    .button-container {
-      width: 200px;
-      height: 60px;
-      background: #b5179e;
-      border-radius: 6px;
-      text-align: center;
-      color: white;
-      font-size: 18px;
-      font-family: "Inter", sans-serif;
-      font-weight: 600;
-      letter-spacing: 0.36px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .button-container:hover {
-      background-color: #a2168e;
-    }
-    .logo-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-    }
-    .title {
-      color: #d9d9d9;
-      font-size: calc(24px + (40 - 24) * ((100vw - 300px) / (1600 - 300)));
-      font-family: "Inter", sans-serif;
-      font-weight: 700;
-      text-transform: capitalize;
-    }
-    .subtitle {
-      text-align: center;
-      color: #d9d9d9;
-      font-size: calc(12px + (16 - 12) * ((100vw - 300px) / (1600 - 300)));
-      font-family: "Inter", sans-serif;
-      font-weight: 600;
-      text-transform: capitalize;
-    }
-  </style>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BeatCasso</title>
-    <link rel="stylesheet" href="/path/to/styles.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename = 'styles/style.css') }}"
+    />
   </head>
   <body>
     <div class="background-blur first"></div>
     <div class="background-blur second"></div>
     <div class="content">
       <div class="logo-container">
-        <div class="title">BeatCasso</div>
-        <div class="subtitle">Your Songs, Our Symphony</div>
+        <img class="logo"
+          src="{{ url_for('static', filename = 'images/Logo.svg') }}"
+          alt="BeatCasso Logo"
+        />
+        <div class="logo-text">
+          <div class="title">BeatCasso</div>
+          <div class="subtitle">Your Songs, Our Symphony</div>
+        </div>
       </div>
       <div class="button-container">Start Generating</div>
     </div>

@@ -15,7 +15,8 @@
     <div class="background-blur second"></div>
     <div class="content">
       <div class="logo-container">
-        <img class="logo"
+        <img
+          class="logo"
           src="{{ url_for('static', filename = 'images/Logo.svg') }}"
           alt="BeatCasso Logo"
         />
@@ -24,7 +25,11 @@
           <div class="subtitle">Your Songs, Our Symphony</div>
         </div>
       </div>
-      <div class="button-container">Start Generating</div>
+      <div class="button-container-start-generating">
+        <a class="button-container-start-generating" href="/generate">
+          Start Generating
+        </a>
+      </div>
     </div>
   </body>
 </html>

@@ -16,7 +16,7 @@ app = Flask(__name__)
 @app.route('/')
 def home():
     # Simple form for user input
-    return render_template('home.html')
+    return render_template('test.html')
 
 @app.route('/recommend', methods=['POST'])
 def recommend():

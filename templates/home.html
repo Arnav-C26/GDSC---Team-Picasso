@@ -10,9 +10,7 @@
       href="{{ url_for('static', filename = 'styles/style.css') }}"
     />
   </head>
-  <body>
-    <div class="background-blur first"></div>
-    <div class="background-blur second"></div>
+  <body style="background-image: url('{{ url_for('static', filename = 'images/Background.png') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
     <div class="content">
       <div class="logo-container">
         <img
@@ -25,8 +23,8 @@
           <div class="subtitle">Your Songs, Our Symphony</div>
         </div>
       </div>
-      <div class="button-container-start-generating">
-        <a class="button-container-start-generating" href="/generate">
+      <div class="button container-start-generating">
+        <a class="button start-generating" href="/generate">
           Start Generating
         </a>
       </div>

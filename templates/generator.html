@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -11,20 +10,38 @@
       href="{{ url_for('static', filename = 'styles/style.css') }}"
     />
   </head>
-  <body>
-    <div class="background-blur first"></div>
-    <div class="background-blur second"></div>
+  <body
+    style="background-image: url('{{ url_for('static', filename = 'images/Background.png') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;"
+  >
     <div class="nav-bar">
-      <a href="/" style="text-decoration: none; color: inherit;">
+      <a href="/" style="text-decoration: none; color: inherit">
         <div class="small-logo-container">
-            <img class="small-logo"
+          <img
+            class="small-logo"
             src="{{ url_for('static', filename = 'images/Logo.svg') }}"
             alt="BeatCasso Logo"
-            />
-            <div class="logo-text">
-                <div class="small-title">BeatCasso</div>
-            </div>
+          />
+          <div class="logo-text">
+            <div class="small-title">BeatCasso</div>
+          </div>
         </div>
-    </a>
+      </a>
+    </div>
+    <div class="input-content">
+      <div class="input-div">
+        <input
+          class="song-name-box"
+          type="text"
+          placeholder="Enter your name"
+        />
+        <input
+          class="artist-name-box"
+          type="text"
+          placeholder="Enter your email"
+        />
+      </div>
+      <button class ="button generate-button" type="button">Generate</button>
+      <div class="reset-text">Reset</div>
+    </div>
   </body>
 </html>

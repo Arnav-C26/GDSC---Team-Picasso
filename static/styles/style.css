@@ -109,7 +109,7 @@ html {
   text-transform: capitalize;
 }
 
-.input-div {
+.searchbox-card {
   width: 692px;
   height: 65px;
   flex-shrink: 0;
@@ -125,7 +125,7 @@ html {
   display: flex;
 }
 
-.song-name-box {
+.song-name-searchbox {
   display: flex;
   width: 328px;
   height: 48px;
@@ -138,7 +138,7 @@ html {
   background: #fff;
 }
 
-.artist-name-box {
+.artist-name-searchbox {
   padding: 0 0 0 8px;
   display: flex;
   width: 328px;
@@ -151,7 +151,7 @@ html {
   background: #fff;
 }
 
-.input-content {
+.input-wrapper {
   position: fixed;
   top: 50px; /* Adjust this value as needed */
   left: 50%;
@@ -162,21 +162,43 @@ html {
   gap: 10px;
 }
 
+/* .generator-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 260px; /* Added gap between generator area and input content 
+} */
 
-.generate-button {
-  width: 216px;
-  height: 37px;
-  flex-shrink: 0;
-}
-
-.reset-text {
-  color: #e08cd3;
-  text-align: center;
-  font-family: "Inter", sans-serif;
-  font-size: 14.787px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 0.348px;
+.generator-title {
+  margin-left: 50px;
+  font-size: 22px;
+  width: 100%; 
+  position: relative;
+  letter-spacing: 0.02em;
   text-transform: capitalize;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  color: #f1f1f1;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px; 
 }
+
+.generator-card {
+  width: calc(100% - 20px); 
+  height: calc(100% - 20px); 
+  position: relative;
+  box-shadow: 0px 2.431999921798706px 2.43px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(36.48px);
+  border-radius: 15.2px;
+  background: linear-gradient(
+    179.92deg,
+    rgba(120, 120, 120, 0.1),
+    rgba(84, 84, 84, 0.25)
+  );
+  border: 1.6px solid rgba(210, 210, 210, 0.29);
+  box-sizing: border-box;
+  margin: 0 10px 10px 10px; /* 10px margin on left, right, and bottom */
+} */

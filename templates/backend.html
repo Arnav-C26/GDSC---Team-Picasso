@@ -1,19 +1,53 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Recommendation System</title>
+    <title>Song Recommendation System</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var songInput = document.getElementById('song');
+            var artistInput = document.getElementById('artist');
+            var featureSelect = document.getElementById('primary_feature');
+
+            function checkInputs() {
+                if (songInput.value && artistInput.value) {
+                    featureSelect.disabled = false;
+                } else {
+                    featureSelect.disabled = true;
+                }
+            }
+
+            songInput.addEventListener('input', checkInputs);
+            artistInput.addEventListener('input', checkInputs);
+
+            // Initial check
+            checkInputs();
+        });
+    </script>
 </head>
 <body>
-    <h1>Music Recommendation System</h1>
-    <form action="/recommend" method="POST">
-        <label for="song">Song Name:</label><br>
-        <input type="text" id="song" name="song" required><br><br>
-        <label for="artist">Artist Name:</label><br>
-        <input type="text" id="artist" name="artist" required><br><br>
-        <input type="submit" value="Recommend">
+    <h1>Song Recommendation System</h1>
+    <form method="POST">
+        <label for="song">Song Name:</label>
+        <input type="text" id="song" name="song" value="{{ song }}" required><br>
+
+        <label for="artist">Artist Name:</label>
+        <input type="text" id="artist" name="artist" value="{{ artist }}" required><br>
+
+        <label for="primary_feature">Select Feature to Filter By:</label>
+        <select id="primary_feature" name="primary_feature" required>
+            <option value="" disabled selected>Filter By Feature</option>
+            {% for feature in features %}
+                <option value="{{ feature }}" {% if primary_feature == feature %}selected{% endif %}>{{ feature }}</option>
+            {% endfor %}
+        </select><br>
+
+        <input type="submit" name="get_recommendations" value="Get Recommendations">
+        <input type="submit" name="clear" value="Clear">
     </form>
+
+    {% if message %}
+        <h2>Recommendations:</h2>
+        <div>{{ message|safe }}</div>
+    {% endif %}
 </body>
 </html>

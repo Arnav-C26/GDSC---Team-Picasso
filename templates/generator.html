@@ -22,6 +22,11 @@
             songInput.addEventListener('input', checkInputs);
             artistInput.addEventListener('input', checkInputs);
             checkInputs();
+
+            var trackItems = document.querySelectorAll('.track-item');
+            trackItems.forEach((item, index) => {
+            item.style.animationDelay = (index * 0.1) + 's';
+        });
         });
     </script>
 </head>

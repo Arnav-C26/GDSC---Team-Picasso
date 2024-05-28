@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BeatCasso Recommendations</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/generator-style.css') }}">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var songInput = document.getElementById('song');
+            var artistInput = document.getElementById('artist');
+            var featureSelect = document.getElementById('primary_feature');
+
+            function checkInputs() {
+                if (songInput.value && artistInput.value) {
+                    featureSelect.disabled = false;
+                } else {
+                    featureSelect.disabled = true;
+                }
+            }
+
+            songInput.addEventListener('input', checkInputs);
+            artistInput.addEventListener('input', checkInputs);
+            checkInputs();
+        });
+    </script>
+</head>
+<body style="background-image: url('{{ url_for('static', filename='images/Background.png') }}'); background-size: cover; background-repeat: no-repeat; background-position: center; background-attachment: fixed;">
+    <div class="nav-bar">
+        <a href="/" style="text-decoration: none; color: inherit">
+            <div class="small-logo-container">
+                <img class="small-logo" src="{{ url_for('static', filename='images/Logo.svg') }}" alt="BeatCasso Logo"/>
+                <div class="logo-text">
+                    <div class="small-title">BeatCasso</div>
+                </div>
+            </div>
+        </a>
+    </div>
+
+<div class="content-wrapper">
+    <form method="POST">
+            <div class="input-wrapper">
+                <div class="searchbox-card">
+                    <input class="song-name-searchbox" type="text" name="song" placeholder="Enter song name" value="{{ song }}" required autocomplete="off"/>
+                    <input class="artist-name-searchbox" type="text" name="artist" placeholder="Enter artist name" value="{{ artist }}" required autocomplete="off"/>                    
+                
+                        <select class="filter-dropdown" id="primary_feature" name="primary_feature" required>
+                            <option value="" disabled selected>Feature Filter</option>
+                            {% for feature in features %}
+                                <option value="{{ feature }}" {% if primary_feature == feature %}selected{% endif %}>{{ feature|capitalize }}</option>
+                            {% endfor %}
+                        </select>                        
+                </div>
+                        <input class="button generate-button" type="submit" name="get_recommendations" value="Generate">
+                        <input class="reset-button" type="submit" name="clear" value="Reset">
+            </div>
+    </form>
+
+    <div class="output-wrapper">
+        <div class="output-title-container">
+            <div class="output-title">Songs Picked for You</div>
+        </div>
+        <div class="generator-card">
+            {% if not tracks %}
+                <div class="message"> {{ message }}</div>
+            {% else %}
+                <div class="track-grid">
+                    {% for track in tracks %}
+                        <div class="track-item">
+                            <img src="{{ track['image_url'] }}" alt="Track Image">
+                            <div class='track-name' >{{ track['track_name'] }}</div>
+                            <div class='artist-name' >{{ track['artist_name'] }}</div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>        
+    </div>
+</div>
+</body>
+</html>

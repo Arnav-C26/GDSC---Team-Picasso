@@ -1,6 +1,5 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
-import numpy as np
 from sklearn.neighbors import NearestNeighbors
 
 app = Flask(__name__)
@@ -18,7 +17,7 @@ data['artist_name'] = data['artists'].apply(lambda x: x.split(';')[0])
 features = ['danceability', 'energy', 'speechiness', 'acousticness', 'instrumentalness', 'liveness', 'valence', 'tempo', 'key', 'loudness', 'mode']
 
 # Function to recommend songs
-def recommend_songs(song, artist, primary_feature, num_recommendations):
+def recommend_songs(song, artist, primary_feature, num_recommendations=10):
     # Convert input song name and artist to lowercase
     song = song.lower()
     artist = artist.lower()
@@ -61,22 +60,34 @@ def index():
     artist = ""
     primary_feature = ""
     message = ""
+    recommendations = None
 
     if request.method == 'POST':
         if 'get_recommendations' in request.form:
             song = request.form['song']
             artist = request.form['artist']
             primary_feature = request.form['primary_feature']
-            num_recommendations = 10
 
-            recommendations = recommend_songs(song, artist, primary_feature, num_recommendations)
+            recommendations = recommend_songs(song, artist, primary_feature)
 
             if recommendations is None or recommendations.empty:
                 message = "No recommendations found. Please check the song and artist name."
+                recommendations = pd.DataFrame()  # Ensure recommendations is not None
             else:
-                message = recommendations.to_html(index=False)
+                # Redirect to the recommendations page
+                return redirect(url_for('recommendations', song=song, artist=artist, primary_feature=primary_feature))
 
-    return render_template('backend.html', song=song, artist=artist, primary_feature=primary_feature, message=message, features=features)
+    return render_template('generator.html', song=song, artist=artist, primary_feature=primary_feature, message=message, features=features, recommendations=recommendations)
+
+@app.route('/recommendations', methods=['GET'])
+def recommendations():
+    song = request.args.get('song')
+    artist = request.args.get('artist')
+    primary_feature = request.args.get('primary_feature')
+
+    recommendations = recommend_songs(song, artist, primary_feature)
+
+    return render_template('recommendations.html', song=song, artist=artist, primary_feature=primary_feature, features=features, recommendations=recommendations)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

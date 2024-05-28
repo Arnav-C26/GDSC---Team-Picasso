@@ -3,25 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeatCasso</title>
+    <title>BeatCasso Recommendations</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/style.css') }}">
-    <script>
-        function checkInputs() {
-            const songName = document.querySelector('.song-name-searchbox').value;
-            const artistName = document.querySelector('.artist-name-searchbox').value;
-            const generateButton = document.querySelector('.generate-button');
-            const featureSelect = document.getElementById('features');
-
-            generateButton.disabled = !(songName && artistName);
-            featureSelect.disabled = !(songName && artistName);
-        }
-        function reset() {
-            document.querySelector('form').reset();
-            document.getElementById('features').disabled = true; // Reset the disabled state of the feature select
-            document.getElementById('recommendations').innerHTML = '';
-            document.getElementById('no-songs').style.display = 'block';
-        }
-    </script>
 </head>
 <body style="background-image: url('{{ url_for('static', filename='images/Background.png') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;">
 <div class="nav-bar">
@@ -37,7 +20,7 @@
 <div class="content-wrapper">
     <div class="input-wrapper">
         <div class="searchbox-card">
-            <form method="POST" oninput="checkInputs()">
+            <form method="POST">
                 <input class="song-name-searchbox" type="text" name="song" placeholder="Enter song name" value="{{ song }}" required/>
                 <input class="artist-name-searchbox" type="text" name="artist" placeholder="Enter artist name" value="{{ artist }}" required/>
                 <div class="feature-filter" id="feature-filter">
@@ -49,7 +32,7 @@
                     </select>
                 </div>
                 <button class="button generate-button" type="submit" name="get_recommendations" disabled>Generate</button>
-                <button class="button reset-button" type="button" onclick="reset()">Reset</button>
+                <button class="button reset-button" type="button" onclick="window.location.href='/'">Go Back</button>
             </form>
         </div>
     </div>
@@ -63,7 +46,7 @@
                 {{ recommendations.to_html(classes='data', header="true", index=False) | safe }}
             </div>
             {% else %}
-            <div class="no-songs" id="no-songs">You Haven’t Generated any Songs yet</div>
+            <div class="no-songs" id="no-songs">No recommendations found. Please check the song and artist name.</div>
             {% endif %}
         </div>
     </div>

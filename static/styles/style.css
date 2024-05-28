@@ -227,9 +227,41 @@ html {
   border: 1.6px solid rgba(210, 210, 210, 0.29);
   box-sizing: border-box;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+.feature-filter {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+select {
+  width: 153.7px;
+  border-radius: 3.49px;
+  background: linear-gradient(
+    179.92deg,
+    rgba(120, 120, 120, 0.1),
+    rgba(84, 84, 84, 0.25)
+  );
+  border: 0.9px solid #d9d9d9;
+  box-sizing: border-box;
+  height: 34.9px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 7.9px 10.5px;
+  gap: 35.8px;
+  color: white;
+}
+
+select:focus {
+  outline: none;
+  border-color: #cecece;
 }
 
 .no-songs {
@@ -241,4 +273,5 @@ html {
   color: rgba(206, 206, 206, 0.2);
   text-align: center;
   font-family: "Inter", sans-serif;
+  margin-top: 20px;
 }
